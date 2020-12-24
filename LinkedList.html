@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linked List</title>
+</head>
+<body>
+    <script>
+        class Node {
+            constructor(element) {
+                this.element = element;
+                this.next = null;
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+                this.length = 0;
+            }
+
+            append(element) { //往链表尾部添加一个元素
+                let node = new Node(element), //传入值创建Node项
+                    current;
+
+                if (this.head === null) { //如果为空链表
+                    this.head = node; //设置node为head（head为第一个节点的引用）
+                } else {
+                    current = this.head; //从表头开始
+                    while (current.next) {
+                        //循环列表，找到最后一项（列表最后一个节点的下一个元素始终是null）
+                        current = current.next;
+                    }
+                    //使当前最后一项的指针指向node
+                    current.next = node;
+                }
+                this.length++; //更新列表长度
+            };
+
+            removeAt(pos) { //删除链表中指定位置的元素
+                if (pos >= 0 && pos < this.length) {
+                    let current = this.head, prev, index = 0;
+
+                    if (pos === 0) {
+                        this.head = current.next;
+                    } else {
+                        while (index++ < pos) {
+                            prev = current;
+                            current = current.next;
+                        }
+
+                        prev.next = current.next;
+                    }
+
+                    this.length--;
+                    return current.element;
+                } else {
+                    return null;
+                }
+            };
+
+            insert(pos, element) { //在指定位置插入一个元素
+                if (pos >= 0 && pos <= this.length) {
+                    let current = this.head, node = new Node(element), index = 0, prev;
+
+                    if (pos === 0) {
+                        node.next = this.head;
+                        this.head = node;
+                    } else {
+                        while (index++ < pos) {
+                            prev = current;
+                            current = current.next;
+                        }
+
+                        node.next = prev.next;
+                        prev.next = node;
+                    }
+
+                    this.length++;
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
+            toString() { //把链表转成一个字符串
+                let current = this.head,
+                    string = '';
+                while (current) { //循环访问列表
+                    string += current.element + (current.next ? '\n' : '');
+                    current = current.next;
+                }
+                return string; //返回字符串
+            };
+
+            indexOf = (element) => { //返回元素的位置
+                let current = this.head,
+                    index = 0;
+
+                while (current) {
+                    if (current.element === element) {
+                        return index;
+                    }
+                    index++;
+                    current = current.next;
+                }
+
+                return -1;    //找不到返回-1
+            };
+
+            remove(element) { //删除元素
+                return this.removeAt(this.indexOf(element));
+            };
+
+            isEmpty() { //链表是否为空
+                return this.length === 0;
+            };
+
+            size() {  //链表长度
+                return this.length;
+            };
+
+            getHead() {  //获取第一个元素
+                return this.head;
+            };
+        }
+
+        let list = new LinkedList();
+        console.log(list.isEmpty());
+        list.append(15);
+        list.append(10);
+        console.log(list.insert(0, 20));
+        console.log(list.remove(15));
+        console.log(list.toString());
+        console.log(list.size());
+        console.log(list.getHead());
+    </script>
+</body>
+</html>

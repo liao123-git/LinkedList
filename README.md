@@ -6,10 +6,13 @@
 
 相比于数组来说，链表的好处在于添加或者删除元素的时候不需要移动其他元素。但是操作链表需要使用指针。数组的一个优点是可以直接访问任何位置的任何元素，但是要是想访问链表中的某一元素，则是必须从起点开始迭代直到找到目标元素。
 
-#### [例子](https://liao123-git.github.io/LinkedList/LinkedList.html "例子")
+#### [例子](https://liao123-git.github.io/LinkedList/LinkedList "例子")
 #### [源码](https://github.com/liao123-git/LinkedList/blob/main/LinkedList.html "源码")
 
 ### 双向链表
 他和普通链表的区别，在双向链表中，链接是双向的，一个链向下一个元素一个链向上一个元素。在操作双向链表的时候既要像普通链表一样考虑next，也要考虑prev。
 
 双向列表提供了两种迭代列表的方法：从头到尾迭代，或者反过来。
+
+#### [例子](https://liao123-git.github.io/LinkedList/DoublyLinkedList "例子")
+#### [源码](https://github.com/liao123-git/LinkedList/blob/main/DoublyLinkedList.html "源码")
